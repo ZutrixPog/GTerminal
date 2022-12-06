@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package command;
+
+option go_package = "github.com/ZutrixPog/grpc";
+
+message Command {
+    string text = 1;
+    string token = 2;
+}
+
+message Credentials {
+    string username = 3;
+    string password = 4;
+}
+
+message Token {
+    string token = 5;
+}
+
+service Terminal {
+    rpc Run(stream Command) returns (stream Command);
+    rpc SignIn(Credentials) returns (Token);
+}
